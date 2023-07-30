@@ -10,10 +10,7 @@ import cn.edu.guet.insurance.service.InsurancesInfoService;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -29,6 +26,7 @@ public class InsurancesController {
     @Transactional
     @PostMapping("/createInsurances")
     public ResponseData createInsurances(@RequestBody InsuranceList insuranceList) {
+        System.out.println(insuranceList+"+++++++++++++++++++++++++++");
         return infoService.createInsurances(insuranceList);
     }
 
@@ -56,4 +54,5 @@ public class InsurancesController {
         System.out.println(year);
         return insuranceSummaryService.searchInsuranceSummary(summaryDTO);
     }
+
 }

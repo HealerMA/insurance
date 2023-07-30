@@ -10,6 +10,7 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -51,16 +52,16 @@ public class ModifyController {
     }
 
     @PostMapping("/searchModify")
-    public ResponseData searchModify(@RequestBody SearchModifyDTO searchModifyDTO){
+    public ResponseData searchModify(@RequestBody SearchModifyDTO searchModifyDTO) {
         IPage searchModify = modifyBasicInfoService.searchModify(searchModifyDTO);
         System.out.println("没有实力");
         return ResponseData.ok(searchModify);
     }
 
     @PostMapping("/getCountyByPrefecture")
-    public ResponseData getCountyByPrefecture(@RequestBody SearchModifyDTO searchModifyDTO){
-        int prefecture=searchModifyDTO.getPrefecture();
-        List<Integer> countyList=prefectureCountyService.getCountyByPrefecture(prefecture);
+    public ResponseData getCountyByPrefecture(@RequestBody SearchModifyDTO searchModifyDTO) {
+        int prefecture = searchModifyDTO.getPrefecture();
+        List<Integer> countyList = prefectureCountyService.getCountyByPrefecture(prefecture);
         return ResponseData.ok(countyList);
     }
 
@@ -71,6 +72,8 @@ public class ModifyController {
         System.out.println(year);
         return modifySummaryService.searchModifySummary(searchSummaryDTO);
     }
+
+
 
 
 }
