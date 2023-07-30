@@ -30,6 +30,8 @@ import java.util.List;
 public class ModifyBasicInfoServiceImpl extends ServiceImpl<ModifyBasicInfoMapper, ModifyBasicInfo>
     implements ModifyBasicInfoService {
 
+    final Integer NO_FACTER = 0;
+
     @Autowired
     ModifyBasicInfoMapper modifyBasicInfoMapper;
 
@@ -91,10 +93,10 @@ public class ModifyBasicInfoServiceImpl extends ServiceImpl<ModifyBasicInfoMappe
         page.setSize(searchModifyDTO.getPageSize());
         page.setCurrent(searchModifyDTO.getCurrentPage());
         QueryWrapper<ModifyBasicInfo> qw = new QueryWrapper();
-        if ((searchModifyDTO.getPrefecture() != null) && (searchModifyDTO.getPrefecture() != 0)) {
+        if ((searchModifyDTO.getPrefecture() != null) && (searchModifyDTO.getPrefecture() != NO_FACTER)) {
             qw.eq("prefecture", searchModifyDTO.getPrefecture());
         }
-        if ((searchModifyDTO.getCounty() != null) && (searchModifyDTO.getCounty() != 0)) {
+        if ((searchModifyDTO.getCounty() != null) && (searchModifyDTO.getCounty() != NO_FACTER)) {
             qw.eq("county", searchModifyDTO.getCounty());
         }
         if (!StringUtils.isBlank(searchModifyDTO.getModifyProjectName())) {
@@ -103,14 +105,12 @@ public class ModifyBasicInfoServiceImpl extends ServiceImpl<ModifyBasicInfoMappe
         if (CollectionUtil.isNotEmpty(searchModifyDTO.getOverWorkTime())) {
             qw.between("actual_completion_time", searchModifyDTO.getOverWorkTime().get(0), searchModifyDTO.getOverWorkTime().get(1));
         }
+        qw.orderByDesc("prefecture");
         IPage listResult = modifyBasicInfoMapper.selectPage(page, qw);
 
         return listResult;
+
     }
-
-
-
-
 
 }
 

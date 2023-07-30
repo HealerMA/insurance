@@ -16,6 +16,7 @@ import java.util.List;
 @NoArgsConstructor
 public class SearchInsurancesDTO extends Page {
 
+
     /**
      * 页码
      */
@@ -33,24 +34,49 @@ public class SearchInsurancesDTO extends Page {
     private Integer prefecture;
 
     /**
+     *
      * 区县
      */
     @TableField(value = "county")
     private Integer county;
 
     /**
-     * 市政迁改项目名称
+     * 项目名称
      */
-    @TableField(value = "modify_project_name")
-    private String modifyProjectName;
+    @TableField(value = "case_name")
+    private String caseName;
 
     /**
-     * 实际完成时间
+     * 项目完成时间
      */
-    @TableField(value = "actual_completion_time")
+    @TableField(value = "case_occurrence_time")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    private Date actualCompletionTime;
-
+    private Date caseOccurrenceTime;
+    /**
+     * 网络层级
+     */
+    @TableField(value = "network_hierarchy")
+    private Integer networkHierarchy;
+    /**
+     * 案件进展情况
+     */
+    @TableField(value = "case_progress_situation")
+    private Integer caseProgressSituation;
+    /**
+     * 保险报案原因分类
+     */
+    @TableField(value = "reporting_reasons_engine")
+    private Integer reportingReasonsEngine;
+    /**
+     * 赔付类型
+     */
+    @TableField(value = "compensation_engine")
+    private Integer compensationEngine;
+    /**
+     * 赔付进度
+     */
+    @TableField(value = "compensation_progress")
+    private Integer compensationProgress;
 
     private List<String> overWorkTime;
 
